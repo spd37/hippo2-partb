@@ -1,0 +1,13 @@
+# Generated training artifacts
+plots_part_b/
+*.db
+*.pth
+__pycache__/
+wandb/
+
+# Generated result tables (regenerated each run)
+final_results.csv
+ablation_results.csv
+
+# Local scratch
+_pptx_dump.txt
