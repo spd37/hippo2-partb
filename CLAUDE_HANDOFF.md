@@ -64,3 +64,45 @@ Results: wandb.ai (live, incl. SHAP images) + local `plots_part_b/`, `final_resu
   on the Linux box.
 - Optuna's wandb callback import is `from optuna.integration.wandb import WeightsAndBiasesCallback`;
   on newer Optuna you may need `pip install optuna-integration` (already in the install line).
+
+## ⭐ USER REQUEST — wants a NEW SLIDE: "How Optuna + Adam train the model" (the nested-loop flow)
+The student understood and explicitly wants this on a slide in `nm20275.pptx`. Build a slide that
+explains the **two-level optimization** in `nm20275.py`: Optuna = outer loop (searches
+hyperparameters), Adam = inner loop (trains the weights). Use the content below verbatim/adapted.
+
+**Slide title:** *Two-Level Optimization: Optuna searches, Adam learns*
+
+**Slide bullets (deck is English — keep consistent):**
+- **Adam (inner loop)** optimizes the network **weights** via gradient descent with momentum +
+  per-parameter adaptive step. Acts at `optimizer.step()` after `loss.backward()`.
+- **Optuna (outer loop)** optimizes the **hyperparameters** — learning rate, #layers (1–2),
+  #neurons (10–100), dropout — by trying configurations and keeping the lowest validation loss
+  (Bayesian TPE, `direction="minimize"`).
+- **The link:** Optuna *chooses* the learning rate → Adam *uses* it:
+  `optim.Adam(model.parameters(), lr=trial.suggest_float('lr', 1e-4, 1e-3, log=True))` (line 315).
+- `study.optimize(objective, n_trials=20)` calls `objective()` 20×; each call builds an MLP,
+  trains it briefly with Adam, returns `val_loss`. Then `best = study.best_params` rebuilds and
+  fully trains the winning network, evaluated on the held-out 1400 RPM test set.
+
+**Flow diagram for the slide (recreate as a graphic/box-arrows):**
+```
+FOR each target (NOx, Fuel, Intake, lambda):
+   create_study(direction="minimize")                     ← line 579
+   study.optimize(objective, n_trials=20):                ← line 582   ┐ OUTER loop
+        × 20 trials → objective():                                     │ (Optuna search:
+              Optuna → suggests lr, #layers, #neurons, dropout         │  hyperparameters)
+              build MLP (Linear→ReLU→Dropout ...)                      │
+              train with Adam  ────────────────────────┐               │
+                 per batch: zero_grad → backward → step │ INNER loop    │
+                 (Adam updates WEIGHTS, step size = lr) ┘ (training)    │
+              return val_loss                                          ┘
+   best = study.best_params                               ← line 586  (the winner)
+   rebuild MLP with best + full training                  ← lines 590–600
+   evaluate on TEST (1400 RPM) → MAE, R²
+```
+
+**One-line takeaway for the slide:** *Adam asks "how do I change the weights?"; Optuna asks
+"which learning rate / architecture do I give Adam?" — Optuna chooses, Adam applies.*
+
+(Full Greek explanation of every line lives in `THEORY_NOTES_GR.md`; per-slide scripts in
+`SPEAKER_NOTES.md`. This slide should slot near the current S16/S17 "How Optuna works" area.)

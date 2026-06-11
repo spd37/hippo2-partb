@@ -88,7 +88,7 @@ from optuna.integration.wandb import WeightsAndBiasesCallback
 # poly -> Προσθήκη πολυωνυμικών χαρακτηριστικών (degree=2) ΔΕΝ ΖΗΤΗΘΗΚΕ ΑΛΛΑ ΕΙΝΑΙ ΕΝΔΙΑΦΕΡΟΥΣΑ ΠΡΟΣΘΗΚΗ 
 # gplearn -> Χρήση γενετικού αλγορίθμου για δημιουργία νέων χαρακτηριστικών
 
-FEATURE_ENG_MODE = 'none'  # None, 'poly', or 'gplearn'
+FEATURE_ENG_MODE = os.environ.get('FEATURE_ENG_MODE', 'none')  # None, 'poly', or 'gplearn' (env-overridable)
 N_TRIALS = 20              # Sufficient trials for deep architecture search
 
 # RUN_ABLATION -> Αν True, εκτελείται η ελεγχόμενη μελέτη ablation (σάρωση νευρώνων/επιπέδων)

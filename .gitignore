@@ -11,3 +11,8 @@ ablation_results.csv
 
 # Local scratch
 _pptx_dump.txt
+
+# Virtual environments & logs (do not commit)
+/venv/
+/hippo2-partb/
+*.log

@@ -1,0 +1,11 @@
+target,feature_mode,n_layers,units,lr,test_MAE,test_R2,test_RMSE
+NOx,none,2,97->65,4.94e-04,13.5624,0.9680,18.0286
+Fuel_Consumption,none,1,89,5.09e-04,0.3454,0.9992,0.4748
+Intake_Pressure,none,1,65,5.85e-04,1.2054,0.9991,1.5470
+lambda,none,2,36->70,6.29e-04,0.0387,0.9978,0.0666
+NOx,poly,2,94->96,4.23e-04,17.9102,0.9450,23.6372
+Fuel_Consumption,poly,1,40,7.02e-04,0.2847,0.9995,0.3778
+Intake_Pressure,poly,1,68,1.50e-04,1.2595,0.9990,1.5873
+lambda,poly,2,73->70,6.12e-04,0.0472,0.9962,0.0870
+NOx,gplearn,2,79->100,4.21e-04,18.3766,0.9431,24.0521
+Fuel_Consumption,gplearn,1,100,9.83e-04,0.2919,0.9995,0.3914
