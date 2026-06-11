@@ -1,0 +1,11 @@
+torch==2.12.0
+optuna==4.9.0
+optuna-integration==4.9.0
+wandb==0.27.2
+gplearn==0.4.3
+shap==0.52.0
+seaborn==0.13.2
+pandas==3.0.3
+scikit-learn==1.9.0
+matplotlib==3.10.9
+numpy==2.4.6
