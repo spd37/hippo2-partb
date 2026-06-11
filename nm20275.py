@@ -50,6 +50,12 @@
 # Author: Dagklis Spyros -30/4/2026
 # Student ID nm20275
 # email spd37@hotmail.com
+#
+# GitHub repository: https://github.com/spd37/hippo2-partb
+# WandB dashboard (entity 'dagklis-', project 'Advanced_Control_Systems'):
+#   https://wandb.ai/dagklis-/Advanced_Control_Systems
+#   (runs are also saved offline under ./wandb/ when WANDB_MODE=offline; sync later with `wandb sync`)
+#
 # Disclaimer: This code is provided for educational purposes as part of an academic project. It is not intended for commercial use or deployment in production environments. The author is not responsible for any misuse or unintended consequences resulting from the use of this code. Always ensure that you have the appropriate permissions and ethical considerations in place when working with data and machine learning models.
 # You are encouraged to review and understand the code thoroughly before using it, and to modify it as necessary to fit your specific use case. The code is provided "as is" without any warranties or guarantees of performance, accuracy, or suitability for any particular purpose. Use at your own risk.
 
