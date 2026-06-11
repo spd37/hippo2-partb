@@ -52,8 +52,8 @@
 # email spd37@hotmail.com
 #
 # GitHub repository: https://github.com/spd37/hippo2-partb
-# WandB dashboard (entity 'dagklis-', project 'Advanced_Control_Systems'):
-#   https://wandb.ai/dagklis-/Advanced_Control_Systems
+# WandB dashboard (entity 'nm20275ntua', project 'Advanced_Control_Systems'):
+#   https://wandb.ai/nm20275ntua/Advanced_Control_Systems
 #   (runs are also saved offline under ./wandb/ when WANDB_MODE=offline; sync later with `wandb sync`)
 #
 # Disclaimer: This code is provided for educational purposes as part of an academic project. It is not intended for commercial use or deployment in production environments. The author is not responsible for any misuse or unintended consequences resulting from the use of this code. Always ensure that you have the appropriate permissions and ethical considerations in place when working with data and machine learning models.
@@ -340,7 +340,7 @@ def train_final_model(model, t_loader, v_loader, model_name, lr):
     
     # [WANDB] 1. Ξεκινάμε το tracking για αυτό το συγκεκριμένο μοντέλο
     run = wandb.init(
-        entity="dagklis-",                   # Το username σου στο WandB
+        entity="nm20275ntua",                   # Το username σου στο WandB
         project="Advanced_Control_Systems",  # Όνομα project
         name=model_name,                     # π.χ. 'Fuel_Consumption_PartB'
         config={
@@ -576,7 +576,7 @@ if __name__ == "__main__":
         # Ρυθμίζουμε πού θα σωθούν τα δεδομένα του Optuna στο W&B
         wandb_kwargs = {
             "project": "Advanced_Control_Systems", 
-            "entity": "dagklis-",
+            "entity": "nm20275ntua",
             "name": f"Sweep_{exp_name}" # π.χ. Sweep_NOx_GPLEARN_PartB
         }
         wandbc = WeightsAndBiasesCallback(metric_name="val_loss", wandb_kwargs=wandb_kwargs)
